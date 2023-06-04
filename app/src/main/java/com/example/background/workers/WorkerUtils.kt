@@ -24,14 +24,15 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
+import android.renderscript.Allocation
+import android.renderscript.Element
+import android.renderscript.RenderScript
+import android.renderscript.ScriptIntrinsicBlur
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.annotation.WorkerThread
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import androidx.renderscript.Allocation
-import androidx.renderscript.Element
-import androidx.renderscript.RenderScript
-import androidx.renderscript.ScriptIntrinsicBlur
 import com.example.background.CHANNEL_ID
 import com.example.background.DELAY_TIME_MILLIS
 import com.example.background.NOTIFICATION_ID
@@ -106,6 +107,8 @@ fun sleep() {
  * @param applicationContext Application context
  * @return Blurred bitmap image
  */
+
+@RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
 @WorkerThread
 fun blurBitmap(bitmap: Bitmap, applicationContext: Context): Bitmap {
     lateinit var rsContext: RenderScript
